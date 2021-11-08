@@ -1,0 +1,1 @@
+npx sequelize-auto -h localhost -d omnidb -u root -x 4k535 -p 3306  --dialect mysql -o ./src/model -t activity -l es6

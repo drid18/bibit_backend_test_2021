@@ -1,12 +1,24 @@
 const log4js = require('log4js');
+
 log4js.configure({
     appenders: {
-        out: { type: 'stdout' },
-        app: { type: 'file', filename: `logs/app_${new Date().toISOString().substring(0,10)}.log` }
+        everything: {
+            type: 'dateFile', filename: 'logs/debug.log', layout: {
+                type: 'pattern',
+                pattern: '%d %p %c %n%m%n'
+            }
+        },
+        out: {
+            type: 'stdout', layout: {
+                type: 'pattern',
+                pattern: '%[%d %p %c %] %n%m%n'
+            }
+        }
     },
     categories: {
-        default: { appenders: ['out', 'app'], level: 'debug' }
-    }
+        default: { appenders: ['everything', 'out'], level: 'debug', enableCallStack: true }
+    },
+
 });
 
 exports.log4js = log4js

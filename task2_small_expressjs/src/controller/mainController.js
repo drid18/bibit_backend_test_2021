@@ -6,10 +6,9 @@ class mainController {
     static async servertest(req = express.request) {
         try {
             logger.info("doing servertest")
-            var res = req.res
-            res.send({ rc: "00", rm: "working!" })
+            return ({ rc: "00", rm: "working!" })
         } catch (error) {
-            res.send(error)
+            return (error)
         }
     }
 } exports.mainController = mainController
