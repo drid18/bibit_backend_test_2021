@@ -25,6 +25,8 @@ class mainController {
                 params: { apikey: 'a0a2e9f8', s: title, y: year, page: page }
             };
 
+            logger.info("dirct request options: " + JSON.stringify(options))
+
             var result = await new Promise(function (resolve, reject) {
                 axios.request(options).then(function (response) {
                     console.log(response.data);
@@ -44,12 +46,42 @@ class mainController {
             return (error)
         }
     }
-    static async getmoviedetails(req = express.request) {
+    static async getmoviedetail(req = express.request) {
         try {
-            logger.info("doing servertest")
-            return ({ rc: "00", rm: "working!" })
+
+            var title = req.query.t
+            var year = req.query.y
+            var idimdb = req.query.i
+
+            var paramsdata = { apikey: 'a0a2e9f8', y: year, t: title }
+            if (req.query.hasOwnProperty('i')) paramsdata = { apikey: 'a0a2e9f8', y: year, i: idimdb }
+
+            var options = {
+                method: 'GET',
+                url: 'http://www.omdbapi.com/',
+                params: paramsdata
+            };
+
+            logger.info("dirct request options: " + JSON.stringify(options))
+
+            var result = await new Promise(function (resolve, reject) {
+                axios.request(options).then(function (response) {
+                    console.log(response.data);
+                    resolve(response.data)
+                }).catch(function (error) {
+                    console.error(error);
+                    reject(error)
+                });
+            })
+
+            if (result.Response !== 'False') {
+                return ({ rc: "00", rm: "success", data: result })
+            } else {
+                return ({ rc: "99", rm: "failed", data: result })
+            }
         } catch (error) {
             return (error)
         }
     }
+
 } exports.mainController = mainController

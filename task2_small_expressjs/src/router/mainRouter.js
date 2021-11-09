@@ -10,6 +10,7 @@ class mainRouter {
 
         app.get('/*', async function (req = express.request) {
             logger.info("request: " + req.path + " GET")
+            logger.info("param: " + JSON.stringify(req.query) + " GET")
             var activity = await dbmodel.activity.create({
                 path: req.path,
                 method: 'GET',
@@ -22,6 +23,9 @@ class mainRouter {
             switch (req.path) {
                 case '/search':
                     response = await mainController.searchmovie(req)
+                    break;
+                case '/detail':
+                    response = await mainController.getmoviedetail(req)
                     break;
                 default:
                     response = { rc: 99, rm: "path not found" }
