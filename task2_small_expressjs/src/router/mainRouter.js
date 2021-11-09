@@ -20,8 +20,8 @@ class mainRouter {
 
             var response = { rc: "99", rm: "somethings went wrong :(" }
             switch (req.path) {
-                case '/testing':
-                    response = await mainController.servertest(req)
+                case '/search':
+                    response = await mainController.searchmovie(req)
                     break;
                 default:
                     response = { rc: 99, rm: "path not found" }
@@ -29,7 +29,7 @@ class mainRouter {
             }
 
             activity.res_time = new Date()
-            activity.res_body = JSON.stringify(response)
+            activity.res_body = JSON.stringify(response).length < 1000 ? JSON.stringify(response) : "response too long..."
             await activity.save()
             req.res.send(response)
         })
