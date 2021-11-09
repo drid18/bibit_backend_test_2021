@@ -1,0 +1,3 @@
+{
+    "dbconf":"mysql://root:4k535@localhost:3306/omnidb"
+}
