@@ -14,3 +14,5 @@ mainRouter.init(app)
 app.listen(port, () => {
     logger.info(`app listening at http://localhost:${port}`)
 })
+
+module.exports = app

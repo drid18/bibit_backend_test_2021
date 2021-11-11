@@ -29,10 +29,10 @@ class mainController {
 
             var result = await new Promise(function (resolve, reject) {
                 axios.request(options).then(function (response) {
-                    console.log(response.data);
+                    // console.log(response.data);
                     resolve(response.data)
                 }).catch(function (error) {
-                    console.error(error);
+                    logger.error(error);
                     reject(error)
                 });
             })
@@ -66,10 +66,10 @@ class mainController {
 
             var result = await new Promise(function (resolve, reject) {
                 axios.request(options).then(function (response) {
-                    console.log(response.data);
+                    // console.log(response.data);
                     resolve(response.data)
                 }).catch(function (error) {
-                    console.error(error);
+                    logger.error(error);
                     reject(error)
                 });
             })

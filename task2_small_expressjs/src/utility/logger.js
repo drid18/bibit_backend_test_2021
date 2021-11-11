@@ -16,7 +16,8 @@ log4js.configure({
         }
     },
     categories: {
-        default: { appenders: ['everything', 'out'], level: 'debug', enableCallStack: true }
+        // default: { appenders: ['everything', 'out'], level: 'debug', enableCallStack: true }
+        default: { appenders: ['everything'], level: 'debug', enableCallStack: true }
     },
 
 });
