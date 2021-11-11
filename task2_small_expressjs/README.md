@@ -15,7 +15,32 @@ start script after installation & unit test
 npm run start
 ```
 
-### Step 2. Test /search API
+### Step 2. Set Up Database
+before running, setup database connetion to store api activity
+
+- Create MYSQL Database, and running this to create new table
+```
+CREATE TABLE `activity` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `path` varchar(255) NOT NULL,
+  `req_time` datetime NOT NULL,
+  `req_param` text DEFAULT NULL,
+  `res_time` datetime DEFAULT NULL,
+  `res_body` text DEFAULT NULL,
+  `info` text DEFAULT NULL,
+  `method` varchar(10) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `activity_id_IDX` (`id`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=70 DEFAULT CHARSET=utf8mb4;
+```
+- setup app database config in `/config/conf.json` with your database credentials
+```
+{
+    "dbconf":"mysql://[yourdb]:[yourdb-password]@[yourdb-host]:[yourdb-port]/[yourdb-database]"
+}
+```
+
+### Step 3. Test /search API
 
 - PUBLIC TEST
 
